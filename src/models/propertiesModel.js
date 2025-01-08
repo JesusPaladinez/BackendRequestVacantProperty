@@ -6,7 +6,7 @@ const propertiesSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    neiborhood: {
+    neighborhood: {
         type: String,
         required: true
     },

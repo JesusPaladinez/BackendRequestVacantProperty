@@ -3,7 +3,7 @@ const router = express.Router();
 const propertiesModel = require("../models/propertiesModel");
 
 
-router.get("/properties", async (req, res) => {
+router.get("/", async (req, res) => {
     try {
         const properties = await propertiesModel.find();
         res.status(200).json(properties);
@@ -12,7 +12,7 @@ router.get("/properties", async (req, res) => {
     }
 })
 
-router.get("/properties/:id", async (req, res) => {
+router.get("/:id", async (req, res) => {
     const { id } = req.params;
     try {
         const property = await propertiesModel.findById(id);
@@ -25,3 +25,5 @@ router.get("/properties/:id", async (req, res) => {
         res.status(500).json({ message: error });
     }
 })
+
+module.exports = router;

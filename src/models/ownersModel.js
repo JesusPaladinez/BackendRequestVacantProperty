@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 
 const ownersSchema = new mongoose.Schema({
     property: {
-        type: mongoose.Schema.types.ObjectId,
+        type: mongoose.Schema.Types.ObjectId,
         ref: "properties",
         required: true
     },

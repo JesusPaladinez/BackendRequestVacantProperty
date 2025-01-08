@@ -21,7 +21,7 @@ const requestsModel = new mongoose.Schema({
         required: true
     },
     receipt: {
-        type: File,
+        type: String,
         required: true
     },  
     data_policy: {
