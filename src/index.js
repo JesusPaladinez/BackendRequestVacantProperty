@@ -14,10 +14,7 @@ app.use("/api/owners", ownersRoutes);
 app.use("/api/requests", requestsRoutes);
 
 mongoose
-  .connect(process.env.MONGODB_URI, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  })
+  .connect(process.env.MONGODB_URI)
   .then(() => {
     console.log("Conectado a MongoDB Atlas");
     app.listen(port, () => {
