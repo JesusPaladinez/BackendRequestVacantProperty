@@ -1,11 +1,16 @@
+const app = express();
+const cors = require("cors");
 const express = require("express");
 const mongoose = require("mongoose");
-const propertiesRoutes = require("./routes/propertiesRoutes");	
+const propertiesRoutes = require("./routes/propertiesRoutes");
 const ownersRoutes = require("./routes/ownersRoutes");
 const requestsRoutes = require("./routes/requestsRoutes");
 require("dotenv").config();
 
-const app = express();
+app.use(cors({
+  origin: process.env.CORS_ORIGIN,
+}));
+
 const port = process.env.PORT || 9000;
 
 app.use(express.json());
@@ -24,4 +29,3 @@ mongoose
   .catch((error) => {
     console.error("Error al conectarse a MongoDB Atlas:", error);
   });
-
