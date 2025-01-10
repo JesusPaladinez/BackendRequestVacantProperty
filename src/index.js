@@ -7,7 +7,7 @@ const requestsRoutes = require("./routes/requestsRoutes");
 require("dotenv").config();
 
 const app = express();
-const port = process.env.PORT || 9000;
+const port = process.env.PORT;
 
 app.use(express.json());
 
@@ -20,6 +20,11 @@ app.use(
 app.use("/api/properties", propertiesRoutes);
 app.use("/api/owners", ownersRoutes);
 app.use("/api/requests", requestsRoutes);
+
+app.use((err, req, res, next) => {
+  console.error(err.stack);
+  res.status(500).send("Error del servidor");
+});
 
 mongoose
   .connect(process.env.MONGODB_URI)
