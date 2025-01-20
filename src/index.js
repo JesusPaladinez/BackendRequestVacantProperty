@@ -13,7 +13,20 @@ app.use(express.json());
 
 app.use(
   cors({
-    origin: process.env.CORS_ORIGIN,
+    origin: (origin, callback) => {
+      try {
+        const allowedOrigins = JSON.parse(process.env.CORS_ORIGIN || "[]");
+
+        if (!origin || allowedOrigins.includes(origin)) {
+          callback(null, true);
+        } else {
+          callback(new Error("No permitido por CORS."));
+        }
+      } catch (error) {
+        console.error("Error al procesar los orígenes permitidos:", error.message);
+        callback(new Error("Error de configuración en CORS."));
+      }
+    }
   })
 );
 
